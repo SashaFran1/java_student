@@ -18,8 +18,12 @@ public class HomeWork2 {
     }
 
     private static void positivOrNot(int a) {
-        if (a >= 0) System.out.println("Число положительное");
-        else System.out.println("Число отрицательное");
+        if (a >= 0) {
+            System.out.println("Число положительное");
+        }
+        else {
+            System.out.println("Число отрицательное");
+        }
     }
 
     private static void repeatLine(String s, int a) {
