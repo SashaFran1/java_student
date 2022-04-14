@@ -14,7 +14,7 @@ public class TaskForFor {
                     else System.out.print("   ");
                 }
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 
@@ -30,7 +30,7 @@ public class TaskForFor {
                     else System.out.print("   ");
                 }
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 
@@ -42,7 +42,7 @@ public class TaskForFor {
                     System.out.print("*  ");
                 }
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 
@@ -58,7 +58,7 @@ public class TaskForFor {
                     else System.out.print("   ");
                 }
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 
@@ -71,7 +71,7 @@ public class TaskForFor {
                 }
                 else System.out.print("*  ");
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 
