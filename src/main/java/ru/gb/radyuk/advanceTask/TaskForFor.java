@@ -62,7 +62,7 @@ public class TaskForFor {
         }
     }
 
-    private static void twoSquare() {
+    private static void twoSquares() {
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
@@ -84,6 +84,6 @@ public class TaskForFor {
         System.out.println();
         SquareInSquare();
         System.out.println();
-        twoSquare();
+        twoSquares();
     }
 }
