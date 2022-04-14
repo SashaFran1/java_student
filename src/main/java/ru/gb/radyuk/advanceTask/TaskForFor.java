@@ -63,11 +63,11 @@ public class TaskForFor {
     }
 
     public static void main(String[] args) {
-//        oneSquare();
-//        System.out.println();
-//        oneSquareAndLine();
-//        System.out.println();
-//        triangle();
+        oneSquare();
+        System.out.println();
+        oneSquareAndLine();
+        System.out.println();
+        triangle();
         SquareInSquare();
     }
 }
