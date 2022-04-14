@@ -46,11 +46,28 @@ public class TaskForFor {
         }
     }
 
+    private static void SquareInSquare() {
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (i < 2 || i >= 4) {
+                    System.out.print("*  ");
+                }
+                if (!(i < 2) && !(i >= 4)) {
+                    if (j < 2 || j >= 4) System.out.print("*  ");
+                    else System.out.print("   ");
+                }
+            }
+            System.out.println("");
+        }
+    }
+
     public static void main(String[] args) {
-        oneSquare();
-        System.out.println();
-        oneSquareAndLine();
-        System.out.println();
-        triangle();
+//        oneSquare();
+//        System.out.println();
+//        oneSquareAndLine();
+//        System.out.println();
+//        triangle();
+        SquareInSquare();
     }
 }
