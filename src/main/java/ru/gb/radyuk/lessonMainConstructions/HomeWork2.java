@@ -31,7 +31,7 @@ public class HomeWork2 {
     }
 
     private static boolean leapYearOrNot() {
-        System.out.println("Введите интересующийЮ для проверки год");
+        System.out.println("Введите интересующий для проверки год");
         int year = scanner.nextInt();
         return ((year % 4 == 0) && (year % 100 != 0)) || year % 400 == 0;
     }
