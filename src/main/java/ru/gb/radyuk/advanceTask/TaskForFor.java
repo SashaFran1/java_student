@@ -62,12 +62,28 @@ public class TaskForFor {
         }
     }
 
+    private static void twoSquare() {
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if((i <= 1 & j >= 4) || (i >= 4 && j <= 1)) {
+                    System.out.print("   ");
+                }
+                else System.out.print("*  ");
+            }
+            System.out.println("");
+        }
+    }
+
     public static void main(String[] args) {
         oneSquare();
         System.out.println();
         oneSquareAndLine();
         System.out.println();
         triangle();
+        System.out.println();
         SquareInSquare();
+        System.out.println();
+        twoSquare();
     }
 }
