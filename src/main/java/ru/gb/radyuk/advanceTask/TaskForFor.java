@@ -34,9 +34,23 @@ public class TaskForFor {
         }
     }
 
+    private static void triangle() {
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 5; j >= 0; j--) {
+                if (i == j || i >= j || j == 0) {
+                    System.out.print("*  ");
+                }
+            }
+            System.out.println("");
+        }
+    }
+
     public static void main(String[] args) {
         oneSquare();
         System.out.println();
         oneSquareAndLine();
+        System.out.println();
+        triangle();
     }
 }
