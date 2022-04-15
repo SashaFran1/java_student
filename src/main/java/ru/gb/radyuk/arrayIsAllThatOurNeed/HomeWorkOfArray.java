@@ -20,10 +20,20 @@ public class HomeWorkOfArray {
             }
             System.out.print(zeroAndOne[i] + " ");
         }
+        System.out.println();
+    }
+
+    private static void summonerOfValueForArray() {
+        int[] array = new int[100];
+        for (int i = 0; i < 100; i++) {
+            array[i] = i + 1;
+            System.out.print(array[i] + " ");
+        }
     }
 
     public static void main(String[] args) {
         converterOfOneAndZero();
-
+        System.out.println();
+        summonerOfValueForArray();
     }
 }
