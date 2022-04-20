@@ -40,7 +40,27 @@ public class HomeWorkOfArray {
             }
             System.out.print(array[i] + " ");
         }
+        System.out.println();
     }
+
+    public static int[][] createMatrix(int size) {
+        int[][] a = new int [size][size];
+        for(int i=0; i<size; i++) {
+            for (int j = 0; j < size; j++) {
+                a[i][j] = (i == j) || (i + j == size - 1) ? 1 : 0;
+            }
+        }
+        return a;
+    }
+    public static void printMatrix(int[][] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a.length; j++) {
+                System.out.print(a[i][j] + "  ");
+            }
+            System.out.println();
+        }
+    }
+
 
     public static void main(String[] args) {
         converterOfOneAndZero();
@@ -48,5 +68,8 @@ public class HomeWorkOfArray {
         summonerOfValueForArray();
         System.out.println();
         multiplyToTwo();
+        System.out.println();
+        int[][] a = createMatrix(9);
+        printMatrix(a);
     }
 }
