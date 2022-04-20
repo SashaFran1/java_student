@@ -76,20 +76,52 @@ public class HomeWorkOfArray {
         }
     }
 
-    private static void minAndMaxOfArray() {
-        int[] randomValue = new int[20];
+    private static int[] returnArray() {
+        int[] randomValue = new int[3];
         Random random = new Random();
-        int min = 50, max = 0;
         for (int i = 0; i < randomValue.length; i++) {
-            randomValue[i] = random.nextInt(50);;
-            if (randomValue[i] < min) {
-                min = randomValue[i];
-            } else if (randomValue[i] > max) {
-                max = randomValue[i];
+            randomValue[i] = random.nextInt(5);
+        }
+        return randomValue;
+    }
+
+    private static void minAndMaxOfArray(int[] arrayOfValue) {
+        int min = 50, max = 0;
+        for (int i = 0; i < arrayOfValue.length; i++) {
+            if (arrayOfValue[i] < min) {
+                min = arrayOfValue[i];
+            } else if (arrayOfValue[i] > max) {
+                max = arrayOfValue[i];
             }
         }
         System.out.println("Минимальный элемент = " + min);
         System.out.println("Максимальный элемент = " + max);
+    }
+
+    private static boolean equalsOrNot(int[] value) {
+        for (int i = 0; i < value.length; i++) {
+            int left = 0, right = 0, trash = i;
+            while (trash >= 0) {
+                left += value[trash];
+                trash--;
+            }
+            trash = 1;
+            while (value.length - trash > i) {
+                right += value[value.length - trash];
+                trash++;
+            }
+            if (left == right) {
+                for (int a : value) {
+                    System.out.print(a + " ");
+                }
+                return true;
+            }
+        }
+        for (int a : value) {
+            System.out.print(a + " ");
+        }
+        System.out.println();
+        return false;
     }
 
     public static void main(String[] args) {
@@ -104,6 +136,8 @@ public class HomeWorkOfArray {
         System.out.println();
         printArrayOfValue(makeArrayOfValue(10, 15));
         System.out.println();
-        minAndMaxOfArray();
+        minAndMaxOfArray(returnArray());
+        System.out.println();
+        System.out.println(equalsOrNot(returnArray()));
     }
 }
