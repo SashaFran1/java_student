@@ -125,23 +125,23 @@ public class HomeWorkOfArray {
         return false;
     }
 
-    private static void spinner(int[] spinArray, int n) {
-
-        if (n >= 0) {
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < spinArray.length; j++) {
-                    int trash = spinArray[0];
-                    spinArray[0] = spinArray[spinArray.length-1];
-                    for (int k = 0; k < spinArray.length-1; k++) {
-
-                    }
-                }
-            }
-        }
-        for (int a : spinArray) {
-            System.out.print(a + " ");
-        }
-    }
+//    private static void spinner(int[] spinArray, int n) {
+//
+//        if (n >= 0) {
+//            for (int i = 0; i < n; i++) {
+//                for (int j = 0; j < spinArray.length; j++) {
+//                    int trash = spinArray[0];
+//                    spinArray[0] = spinArray[spinArray.length-1];
+//                    for (int k = 0; k < spinArray.length-1; k++) {
+//
+//                    }
+//                }
+//            }
+//        }
+//        for (int a : spinArray) {
+//            System.out.print(a + " ");
+//        }
+//    }
 
     public static void main(String[] args) {
         converterOfOneAndZero();
@@ -159,8 +159,8 @@ public class HomeWorkOfArray {
         System.out.println();
         System.out.println(equalsOrNot(returnArray()));
         System.out.println();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите количество перемещений");
-        spinner(returnArray(),scanner.nextInt());
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Введите количество перемещений");
+//        spinner(returnArray(),scanner.nextInt());  Последнее задание не смог сделать
     }
 }
