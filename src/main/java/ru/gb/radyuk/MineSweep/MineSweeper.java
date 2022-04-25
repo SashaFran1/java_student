@@ -39,7 +39,7 @@ public class MineSweeper {
     }
 
     public static boolean play() {
-        boolean win = true;
+        boolean win;
         boolean isPassMove;
         int[][] board = generateBoard();
         int[][] moves = new int[HEIGHT][WIDTH];
@@ -67,19 +67,12 @@ public class MineSweeper {
     private static boolean move(int[][] board, int[][] moves) {
         Scanner scanner = new Scanner(System.in);
         printBoard(board, moves);
-        int line = 0, row = 0, flag = 0;;
+        int line = 0, row = 0, flag = 0;
         while (true) {
             System.out.print("Ваш ход (столбец, строка, например А1): ");
             String move = scanner.nextLine();
-            String numbers = "0123456789";
             row += move.charAt(0) - 'A';
             int countOfSymbols = 1, lineCount = move.length()-2;
-//            while (numbers.indexOf(move.charAt(i)) != -1) {
-//                line += move.charAt(i) - '0';
-//                line *= 10;
-//                i++;
-//            }
-//            line /= 10;
             while (lineCount > 0) {                       // Добавил возможность играть с полем 10+
                 countOfSymbols++;
                 lineCount -= 1;
