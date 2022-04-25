@@ -10,8 +10,8 @@ public class MineSweeper {
     // высота игрового поля
     // количество мин
 
-    public static final int WIDTH = 5;
-    public static final int HEIGHT = 5;
+    public static final int WIDTH = 13;
+    public static final int HEIGHT = 13;
     public static final int MINES_COUNT = 5;
     public static final int MINE = 1000;
     public static final int EMPTY = 0;
@@ -73,10 +73,16 @@ public class MineSweeper {
             String move = scanner.nextLine();
             String numbers = "0123456789";
             row += move.charAt(0) - 'A';
-            int countOfSymbols = 1, lineCount = HEIGHT;
-            while (lineCount > 10) {                       // Добавил возможность играть с полем 10+
+            int countOfSymbols = 1, lineCount = move.length()-2;
+//            while (numbers.indexOf(move.charAt(i)) != -1) {
+//                line += move.charAt(i) - '0';
+//                line *= 10;
+//                i++;
+//            }
+//            line /= 10;
+            while (lineCount > 0) {                       // Добавил возможность играть с полем 10+
                 countOfSymbols++;
-                lineCount /= 10;
+                lineCount -= 1;
             }
             for (int i = 1; i <= countOfSymbols; i++) {
                 line += move.charAt(i) - '0';
