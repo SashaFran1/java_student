@@ -10,9 +10,9 @@ public class MineSweeper {
     // высота игрового поля
     // количество мин
 
-    public static final int WIDTH = 10;
-    public static final int HEIGHT = 10;
-    public static final int MINES_COUNT = 20;
+    public static final int WIDTH = 5;
+    public static final int HEIGHT = 5;
+    public static final int MINES_COUNT = 5;
     public static final int MINE = 1000;
     public static final int EMPTY = 0;
     public static final int CELL_OPEN = 1;
@@ -51,127 +51,145 @@ public class MineSweeper {
         return isPassMove;
     }
 
-        private static boolean isWin ( int[][] moves){
+    private static boolean isWin(int[][] moves) {
 //        HEIGHT * WIDTH - MINES_COUNT;
-            int openCell = 0;
-            for (int i = 0; i < HEIGHT; i++) {
-                for (int j = 0; j < WIDTH; j++) {
-                    if (moves[i][j] == CELL_OPEN) {
-                        openCell++;
-                    }
+        int openCell = 0;
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                if (moves[i][j] == CELL_OPEN) {
+                    openCell++;
                 }
             }
-            return openCell + MINES_COUNT == HEIGHT * WIDTH;
         }
+        return openCell + MINES_COUNT == HEIGHT * WIDTH;
+    }
 
-        private static boolean move ( int[][] board, int[][] moves){
-            Scanner scanner = new Scanner(System.in);
-            printBoard(board, moves);
-            int row, line;
-            while (true) {
-                System.out.print("Ваш ход (столбец, строка, например А1): ");
-                String move = scanner.nextLine();
-                row = move.charAt(0) - 'A';
-                line = move.charAt(1) - '0';
-                if (row < WIDTH && row >= 0 && line < HEIGHT && line >= 0) {
-                    break;
-                }
-                System.out.println("Введите координаты внутри игрового поля!!!");
+    private static boolean move(int[][] board, int[][] moves) {
+        Scanner scanner = new Scanner(System.in);
+        printBoard(board, moves);
+        int line = 0, row = 0, flag = 0;;
+        while (true) {
+            System.out.print("Ваш ход (столбец, строка, например А1): ");
+            String move = scanner.nextLine();
+            String numbers = "0123456789";
+            row += move.charAt(0) - 'A';
+            int countOfSymbols = 1, lineCount = HEIGHT;
+            while (lineCount > 10) {                       // Добавил возможность играть с полем 10+
+                countOfSymbols++;
+                lineCount /= 10;
             }
-            if (board[line][row] != MINE) {
+            for (int i = 1; i <= countOfSymbols; i++) {
+                line += move.charAt(i) - '0';
+                line *= 10;
+            }
+            line /= 10;
+            if (move.charAt(move.length() - 1) == '*') {    //Добавлено размещение флага
+                flag = 1;
+            }
+            if (row < WIDTH && row >= 0 && line < HEIGHT && line >= 0) {
+                break;
+            }
+            System.out.println("Введите координаты внутри игрового поля!!!");
+            line = 0; row = 0; // Зафиксил, после выхода за пределы поля, становилось невозможно
+        }                      // играть дальше
+        if (board[line][row] != MINE) {
+            if (flag == 0) {
                 moves[line][row] = CELL_OPEN;
-                return true;
+            } else {
+                moves[line][row] = CELL_FLAG;
             }
-            return false;
+            return true;
         }
+        return false;
+    }
 
-        public static void printBoard ( int[][] board, int[][] moves){
-            System.out.print("   ");
-            for (char i = 'A'; i < 'A' + WIDTH; i++) {
-                System.out.print(" " + i);
+    public static void printBoard(int[][] board, int[][] moves) {
+        System.out.print("   ");
+        for (char i = 'A'; i < 'A' + WIDTH; i++) {
+            System.out.print(" " + i);
+        }
+        System.out.println();
+        for (int i = 0; i < HEIGHT; i++) {
+            System.out.printf("%3d", i);
+            for (int j = 0; j < WIDTH; j++) {
+                if (moves[i][j] == CELL_CLOSE) {
+                    System.out.print("[]");
+                    continue;
+                }
+                var colorCode = getColorCode(board[i][j]);
+                System.out.print(colorCode);
+                if (moves[i][j] == CELL_FLAG) {
+                    System.out.print(ANSI_RESET);
+                    System.out.print(" P");
+                } else if (board[i][j] == EMPTY) {
+                    System.out.print(" .");
+                } else if (board[i][j] == MINE) {
+                    System.out.print(" *");
+                } else {
+                    System.out.printf("%2d", board[i][j]);
+                }
+                System.out.print(ANSI_RESET);
             }
             System.out.println();
-            for (int i = 0; i < HEIGHT; i++) {
-                System.out.printf("%3d", i);
-                for (int j = 0; j < WIDTH; j++) {
-                    if (moves[i][j] == CELL_CLOSE) {
-                        System.out.print("[]");
-                        continue;
-                    }
-                    if (moves[i][j] == CELL_FLAG) {
-                        System.out.print(" P");
-                    }
-                    var colorCode = getColorCode(board[i][j]);
-                    System.out.print(colorCode);
-                    if (board[i][j] == EMPTY) {
-                        System.out.print(" .");
-                    } else if (board[i][j] == MINE) {
-                        System.out.print(" *");
-                    } else {
-                        System.out.printf("%2d", board[i][j]);
-                    }
-                    System.out.print(ANSI_RESET);
+        }
+    }
+
+    public static String getColorCode(int i) {
+        switch (i) {
+            case EMPTY:
+                return ANSI_WHITE;
+            case MINE:
+                return ANSI_PURPLE;
+            case 1:
+                return ANSI_BLUE;
+            case 2:
+                return ANSI_GREEN;
+            case 3:
+                return ANSI_RED;
+            case 4:
+                return ANSI_CYAN;
+            default:
+                return ANSI_YELLOW;
+        }
+    }
+
+    private static int[][] generateBoard() {
+        int[][] board = new int[HEIGHT][WIDTH];
+        Random random = new Random();
+        int mines = MINES_COUNT; //20
+        while (mines > 0) {
+            int x, y;
+            do {
+                x = random.nextInt(HEIGHT);
+                y = random.nextInt(WIDTH);
+            } while (board[x][y] == MINE);
+            board[x][y] = MINE;
+            mines--;
+        }
+
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                if (board[i][j] == MINE) {
+                    continue;
                 }
-                System.out.println();
-            }
-        }
-
-        public static String getColorCode ( int i){
-            switch (i) {
-                case EMPTY:
-                    return ANSI_WHITE;
-                case MINE:
-                    return ANSI_PURPLE;
-                case 1:
-                    return ANSI_BLUE;
-                case 2:
-                    return ANSI_GREEN;
-                case 3:
-                    return ANSI_RED;
-                case 4:
-                    return ANSI_CYAN;
-                default:
-                    return ANSI_YELLOW;
-            }
-        }
-
-        private static int[][] generateBoard () {
-            int[][] board = new int[HEIGHT][WIDTH];
-            Random random = new Random();
-            int mines = MINES_COUNT; //20
-            while (mines > 0) {
-                int x, y;
-                do {
-                    x = random.nextInt(HEIGHT);
-                    y = random.nextInt(WIDTH);
-                } while (board[x][y] == MINE);
-                board[x][y] = MINE;
-                mines--;
-            }
-
-            for (int i = 0; i < HEIGHT; i++) {
-                for (int j = 0; j < WIDTH; j++) {
-                    if (board[i][j] == MINE) {
-                        continue;
-                    }
-                    int mCount = 0;
-                    for (int k = i - 1; k <= i + 1; k++) {
-                        for (int l = j - 1; l <= j + 1; l++) {
-                            if (k < 0 || k >= HEIGHT || l < 0 || l >= WIDTH) {
-                                continue;
-                            }
-                            if (board[k][l] == MINE) {
-                                mCount++;
-                            }
+                int mCount = 0;
+                for (int k = i - 1; k <= i + 1; k++) {
+                    for (int l = j - 1; l <= j + 1; l++) {
+                        if (k < 0 || k >= HEIGHT || l < 0 || l >= WIDTH) {
+                            continue;
+                        }
+                        if (board[k][l] == MINE) {
+                            mCount++;
                         }
                     }
-                    board[i][j] = mCount;
                 }
-
+                board[i][j] = mCount;
             }
-            return board;
 
         }
-
+        return board;
 
     }
+
+
+}
