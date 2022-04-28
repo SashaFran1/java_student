@@ -80,9 +80,12 @@ public class HomeWorkOfArray {
     private static int[] returnArray() {
         int[] randomValue = new int[5];
         Random random = new Random();
+        System.out.print("Исходный массив:  ");
         for (int i = 0; i < randomValue.length; i++) {
-            randomValue[i] = random.nextInt(5);
+            randomValue[i] = random.nextInt(20);
+            System.out.print(randomValue[i] + "  ");
         }
+        System.out.println();
         return randomValue;
     }
 
@@ -125,42 +128,45 @@ public class HomeWorkOfArray {
         return false;
     }
 
-//    private static void spinner(int[] spinArray, int n) {
-//
-//        if (n >= 0) {
-//            for (int i = 0; i < n; i++) {
-//                for (int j = 0; j < spinArray.length; j++) {
-//                    int trash = spinArray[0];
-//                    spinArray[0] = spinArray[spinArray.length-1];
-//                    for (int k = 0; k < spinArray.length-1; k++) {
-//
-//                    }
-//                }
-//            }
-//        }
-//        for (int a : spinArray) {
-//            System.out.print(a + " ");
-//        }
-//    }
+    private static void spinner(int[] spinArray, int n) {
+        n %= spinArray.length;
+        if (n > 0) {
+            for (int i = spinArray.length - 1; i >= n; i--) {
+                    int c = spinArray[i];
+                    spinArray[i] = spinArray[i - n];
+                    spinArray[i - n] = c;
+            }
+        }
+        if (n < 0) {
+            for (int i = 0; i < spinArray.length - 1; i++) {
+                int c = spinArray[i];
+                spinArray[i] = spinArray[i - n];
+                spinArray[i - n] = c;
+            }
+        }
+        for (int a: spinArray) {
+            System.out.print(a + "  ");
+        }
+    }
 
     public static void main(String[] args) {
-        converterOfOneAndZero();
-        System.out.println();
-        summonerOfValueForArray();
-        System.out.println();
-        multiplyToTwo();
-        System.out.println();
-        int[][] a = createMatrix(9);
-        printMatrix(a);
-        System.out.println();
-        printArrayOfValue(makeArrayOfValue(10, 15));
-        System.out.println();
-        minAndMaxOfArray(returnArray());
-        System.out.println();
-        System.out.println(equalsOrNot(returnArray()));
-        System.out.println();
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Введите количество перемещений");
-//        spinner(returnArray(),scanner.nextInt());  Последнее задание не смог сделать
+//        converterOfOneAndZero();
+//        System.out.println();
+//        summonerOfValueForArray();
+//        System.out.println();
+//        multiplyToTwo();
+//        System.out.println();
+//        int[][] a = createMatrix(9);
+//        printMatrix(a);
+//        System.out.println();
+//        printArrayOfValue(makeArrayOfValue(10, 15));
+//        System.out.println();
+//        minAndMaxOfArray(returnArray());
+//        System.out.println();
+//        System.out.println(equalsOrNot(returnArray()));
+//        System.out.println();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите количество перемещений");
+        spinner(returnArray(), scanner.nextInt());
     }
 }
