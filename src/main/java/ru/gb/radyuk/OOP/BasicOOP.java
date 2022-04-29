@@ -8,11 +8,11 @@ public class BasicOOP {
         users[2] = new User("Марина", "Ро", "M@k.ru", 34, false);
         users[3] = new User("Дмитрий", "Дмитриев", "D@k.ru", 25, true);
         users[4] = new User("Георгия", "Олеговна", "G@k.ru", 57, false);
-        for (int i = 0; i < users.length; i++) {
-            if (users[i].getAge() > 40) {
-                System.out.println("Имя: " + users[i].getFirstName() + ", фамилия: " + users[i].getLastName() +
-                        ", email: " + users[i].geteMail() + ", возраст: " + users[i].getAge() +
-                        ", пол: " + users[i].geteMail());
+        for (User user : users) {
+            if (user.getAge() > 40) {
+                System.out.println("Имя: " + user.getFirstName() + ", фамилия: " + user.getLastName() +
+                        ", email: " + user.geteMail() + ", возраст: " + user.getAge() +
+                        ", пол: " + user.geteMail());
             }
         }
             }
