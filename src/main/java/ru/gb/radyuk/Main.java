@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Cat c1 = new Cat();
         Dog d1 = new Dog();
+        Cat c1 = new Cat();
         System.out.println("Введите длинну для забега котика");
         c1.run(scanner.nextInt());
         System.out.println("Введите длинну для заплыва котика");
