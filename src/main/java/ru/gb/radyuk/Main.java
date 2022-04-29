@@ -1,5 +1,6 @@
 package ru.gb.radyuk;
 
+import ru.gb.radyuk.OOP1.Advanced.Animal;
 import ru.gb.radyuk.OOP1.Advanced.Cat;
 import ru.gb.radyuk.OOP1.Advanced.Dog;
 
@@ -18,5 +19,6 @@ public class Main {
         d1.run(scanner.nextInt());
         System.out.println("Введите длинну для заплыва бобика");
         d1.swim(scanner.nextInt());
+        System.out.println("Всего котов и собак : " + Animal.count);
     }
 }
