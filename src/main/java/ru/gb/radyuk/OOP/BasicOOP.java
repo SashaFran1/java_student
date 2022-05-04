@@ -10,9 +10,7 @@ public class BasicOOP {
         users[4] = new User("Георгия", "Олеговна", "G@k.ru", 57, false);
         for (User user : users) {
             if (user.getAge() > 40) {
-                System.out.println("Имя: " + user.getFirstName() + ", фамилия: " + user.getLastName() +
-                        ", email: " + user.geteMail() + ", возраст: " + user.getAge() +
-                        ", пол: " + user.geteMail());
+                user.getInfo();
             }
         }
             }

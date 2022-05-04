@@ -49,6 +49,12 @@ public class User {
         this.male = male;
     }
 
+    public void getInfo(){
+        System.out.println("Имя: " + getFirstName() + ", фамилия: " + getLastName() +
+                ", email: " + geteMail() + ", возраст: " + getAge() +
+                ", пол: " + geteMail());
+    }
+
     public User(String firstName, String lastName, String eMail, int age, boolean male) {
         this.firstName = firstName;
         this.lastName = lastName;
