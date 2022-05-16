@@ -19,7 +19,7 @@ public class Main {
         plate.info();
         for (Cat c : cat) {
             if (plate.getFood() <= c.getAppetite()) {
-                System.out.println("В кормушке мало еды, нужно добавить 50 единиц");
+                System.out.println("В кормушке мало еды, нужно добавить!");
                 plate.addFood(50);
             }
             c.eat(plate);
