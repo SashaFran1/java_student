@@ -22,7 +22,7 @@ public class Robot implements Movement{
 
     @Override
     public void jump(int length) {
-        if (length >= 0 && ableToPass == true) {
+        if (length >= 0 && ableToPass) {
             if (possibleToJump >= length) {
                 System.out.println("Робот прыгнул на " + length);
             } else {

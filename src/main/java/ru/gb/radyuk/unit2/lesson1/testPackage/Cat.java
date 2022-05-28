@@ -21,7 +21,7 @@ public class Cat implements Movement {
 
     @Override
     public void jump(int length) {
-        if (length >= 0 && ableToPass == true) {
+        if (length >= 0 && ableToPass) {
             if (possibleToJump >= length ) {
                 System.out.println("Кот прыгнул на " + length);
                 ableToPass = true;

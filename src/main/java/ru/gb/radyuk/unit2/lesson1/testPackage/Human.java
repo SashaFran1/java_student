@@ -21,7 +21,7 @@ public class Human implements Movement {
 
     @Override
     public void jump(int length) {
-        if (length >= 0 && ableToPass == true) {
+        if (length >= 0 && ableToPass) {
             if (possibleToJump >= length) {
                 System.out.println("Человек прыгнул на " + length);
             } else {
